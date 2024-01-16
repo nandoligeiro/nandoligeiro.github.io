@@ -1,0 +1,88 @@
+{
+  "section": [
+    {
+      "label": "Fluxo de Pagamento",
+      "fields": [
+        {
+          "label": "Tipo de taxa",
+          "type": "dropDown",
+          "api":"",
+          "item-list": [
+            "Pré",
+            "Pos"
+          ],
+          "value": "PÓS"
+        },
+        {
+          "label": "Indexador",
+          "type": "checkBox",
+          "api": "/lista-indexadores",
+          "item-list": [],
+          "value": "Selecione"
+        },
+        {
+          "label": "Telefone",
+          "type": "telefone",
+          "value": "1198208651"
+        },
+        {
+          "label": "Valdevino",
+          "type": "telefone",
+          "value": "1198208651"
+        },
+        {
+          "label": "Signatario",
+          "type": "texto"
+        },
+        {
+          "signatario-list": {
+            "fields": [
+              {
+                "label": "Nome",
+                "type": "text"
+              },
+              {
+                "label": "cpf",
+                "type": "text"
+              },
+              {
+                "label": "Email",
+                "type": "text"
+              }                        
+            ],
+            "action": {
+              "label": "Adicionar",
+              "type": "button",
+              "class": "plus",
+              "evento": "xpto"
+            }
+          }
+        },
+        {
+          "label": "Informações adicionais",
+          "type": "texto"
+        },
+        {
+          "label": "O cliente é uma.....",
+          "type": "check-box",
+          "value": "unchecked"
+        }          
+      ]
+    },
+    {
+      "label": "Fluxo de Pagamento 2",
+      "fields": [
+        {
+          "label": "Tipo de taxa",
+          "type": "dropDown",
+          "api":"",
+          "item-list": [
+            "Pré",
+            "Pos"
+          ],
+          "value": "PÓS"
+        }
+        ]
+    }
+  ]
+}
