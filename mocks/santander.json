@@ -11,7 +11,7 @@
   "card": {
     "id": 1,
     "number": "xxxx xxxx xxxx 1111",
-    "limit": "2000,00"
+    "limit": 2000.00
   },
   "features": [
     {
