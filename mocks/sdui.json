@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "type": "SCAFFOLD",
+      "top_bar": [
+        {
+          "type": "APP_BAR",
+          "children": [
+            {
+              "type": "TEXT",
+              "value": "Server Driven Ui"
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "VERTICAL_LIST",
+          "children": [
+            {
+              "type": "ROW",
+              "children": [
+                {
+                  "type": "TEXT",
+                  "value": "Hi 1"
+                },
+                {
+                  "type": "IMAGE",
+                  "value": "https://8pic.ir/uploads/flowers.png"
+                }
+              ]
+            },
+            {
+              "type": "ROW",
+              "children": [
+                {
+                  "type": "TEXT",
+                  "value": "Hi 2"
+                },
+                {
+                  "type": "IMAGE",
+                  "value": "https://8pic.ir/uploads/tree.png"
+                }
+              ]
+            },
+            {
+              "type": "ROW",
+              "children": [
+                {
+                  "type": "TEXT",
+                  "value": "Hi 3"
+                },
+                {
+                  "type": "IMAGE",
+                  "value": "https://8pic.ir/uploads/cactus.png"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
