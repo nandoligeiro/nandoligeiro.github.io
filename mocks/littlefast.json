@@ -1,0 +1,83 @@
+{
+  "component": [
+    {
+      "type": "APP_BAR",
+      "content": {
+        "title": "SDUI"
+      },
+      "actions": {
+
+      }
+    },
+    {
+      "type": "HEADER",
+      "content": {
+        "name": "Ligeiro",
+        "number": "01.090790-5",
+        "agency": "20222"
+      }
+    },
+    {
+      "type": "BALANCE_CARD",
+      "content": {
+        "balance": "R$ 634,00",
+        "limit": "R$ 1.000,00"
+      },
+      "actions": {
+        "onPress": {
+          "case": "deepLink",
+          "data": {"url": "https"}
+        }
+      }
+    },
+    {
+      "type": "CREDIT_CARD",
+      "content": {
+        "number": "xxxx xxxx xxxx 3223",
+        "limit": "R$ 2.000,00"
+      }
+    },
+    {
+      "type": "SHORTCUT",
+      "content": {
+        "items": [
+          {
+            "icon": "https://nandoligeiro.github.io/icons/pix.svg",
+            "description": "PIX"
+          },
+          {
+            "icon": "https://nandoligeiro.github.io/icons/pay.svg",
+            "description": "Pagar"
+          },
+          {
+            "icon": "https://nandoligeiro.github.io/icons/transfer.svg",
+            "description": "Transferir"
+          },
+          {
+            "icon": "https://nandoligeiro.github.io/icons/account.svg",
+            "description": "Conta Corrente"
+          },
+          {
+            "icon": "https://nandoligeiro.github.io/icons/cards.svg",
+            "description": "Cartôes"
+          }
+        ]
+      }
+    },
+    {
+      "type": "NEWS_CAROUSEL",
+      "content": {
+        "items": [
+          {
+            "icon": "https://nandoligeiro.github.io/icons/insurance.svg",
+            "description": "Santander Seguro Casa, seu faz-tudo. Mais de 50 serviços pra você. Confira!"
+          },
+          {
+            "icon": "https://nandoligeiro.github.io/icons/credit.svg",
+            "description": "O Santander tem soluções de crédito sob medida pra você. Confira!"
+          }
+        ]
+      }
+    }
+  ]
+}
