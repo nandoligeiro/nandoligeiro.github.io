@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batizado da Elis</title>
+    <!-- Carregando Tailwind CSS e fontes modernas --><script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos minimalistas e tipografia clara */
+        body {
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f9ff; /* Fundo azul muito claro */
+            padding: 1rem;
+        }
+        .invitation-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* Bordas mais sutis */
+            border-left: 5px solid #1e3a8a; /* Alterado para Azul Marinho */
+        }
+        .invitation-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            color: #db2777; /* Rosa forte */
+            line-height: 1;
+        }
+        .section-title {
+            letter-spacing: 0.15em;
+            color: #1e3a8a; /* Alterado para Azul Marinho (Navy) */
+        }
+        .text-primary-light {
+            color: #1e3a8a; /* Alterado para Azul Marinho (Navy) */
+        }
+        .text-secondary-dark {
+            color: #1e3a8a; /* Alterado para Azul Marinho (Navy) */
+        }
+    </style>
+</head>
+<body>
+
+<div class="invitation-card w-full max-w-md md:max-w-lg text-center p-8 sm:p-10 lg:p-12 shadow-xl">
+
+    <!-- Ícone (agora azul marinho) -->
+    <svg class="w-10 h-10 text-primary-light mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+
+    <h3 class="text-lg sm:text-xl text-primary-light font-light section-title mb-4">
+        O Batismo
+    </h3>
+
+    <h1 class="invitation-name text-6xl sm:text-7xl mb-6 italic">
+        Elis
+    </h1>
+
+    <!-- Detalhes da Cerimônia -->
+    <div class="space-y-6 text-secondary-dark mt-10">
+        <div class="border-b border-blue-200 pb-4"> <!-- Borda levemente mais escura -->
+            <p class="font-bold text-xl mb-2 text-secondary-dark">Cerimônia Religiosa</p>
+            <p class="text-2xl font-light mb-1">
+                15 de Novembro de 2025, 11:00h
+            </p>
+            <p class="text-md text-primary-light font-medium mt-3">
+                Santuário Nossa Senhora de Fátima
+            </p>
+            <p class="text-sm text-blue-800"> <!-- Azul mais escuro para o endereço -->
+                Rua Darwin, 651 - Santo Amaro, SP
+            </p>
+        </div>
+
+        <!-- Detalhes da Recepção (RESTAURANTE) -->
+        <div class="pt-4">
+            <p class="font-bold text-xl mb-2 text-secondary-dark">Celebração</p>
+            <p class="text-md text-primary-light mb-4">
+                Com a alegria de celebrar este momento, convidamos para um almoço em seguida:
+            </p>
+            <p class="text-lg font-medium text-secondary-dark">
+                Armazém da Fazenda
+            </p>
+            <p class="text-sm text-blue-800"> <!-- Azul mais escuro para o endereço -->
+                Av. Atlântica, 4069 - Interlagos, SP
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Rodapé (Pais) -->
+    <div class="mt-12 pt-6 border-t border-blue-200"> <!-- Borda levemente mais escura -->
+        <p class="text-base text-primary-light mb-1 font-light">
+            Com a benção e o amor de
+        </p>
+        <p class="text-lg text-secondary-dark font-semibold section-title tracking-widest">
+            Jussara e Fernando
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
