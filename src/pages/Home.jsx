@@ -20,7 +20,7 @@ export default function Home() {
       </Helmet>
 
       {/* — Hero -------------------------------------------- */}
-      <section className="hero animate-fade-in" style={{ background: 'radial-gradient(ellipse at 60% 0%, rgba(249,115,22,0.06) 0%, transparent 60%)' }}>
+      <section className="hero animate-fade-in" style={{ background: 'radial-gradient(ellipse at 60% 0%, rgba(84,138,247,0.06) 0%, transparent 65%)' }}>
         <p className="hero-eyebrow">// Software Engineering &amp; Leadership</p>
         <h1 className="hero-title">
           Olá, sou<br />
@@ -59,7 +59,7 @@ export default function Home() {
       {/* — Newsletter CTA ---------------------------------- */}
       <section className="home-section" style={{ borderTop: '1px solid var(--border)' }}>
         <div style={{
-          background: 'linear-gradient(135deg, var(--surface) 0%, rgba(249,115,22,0.05) 100%)',
+          background: 'linear-gradient(135deg, var(--surface) 0%, rgba(84,138,247,0.04) 100%)',
           border: '1px solid var(--border)',
           borderRadius: 'var(--radius-lg)',
           padding: '2.5rem',
