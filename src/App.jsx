@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import Leadership from './pages/Leadership'
+import LeadershipPost from './pages/LeadershipPost'
 import Portfolio from './pages/Portfolio'
 import Community from './pages/Community'
 
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<BlogPost />} />
         <Route path="leadership" element={<Leadership />} />
+        <Route path="leadership/:slug" element={<LeadershipPost />} />
         <Route path="portfolio" element={<Portfolio />} />
         <Route path="community" element={<Community />} />
         <Route path="*" element={<NotFound />} />
