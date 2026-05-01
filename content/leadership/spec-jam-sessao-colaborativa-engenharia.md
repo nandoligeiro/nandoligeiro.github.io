@@ -1,42 +1,88 @@
 ---
-title: "SPEC JAM: sessão colaborativa para liderança técnica"
+title: "SPEC JAM: minha vivência como Tech Lead na era da IA"
 slug: "spec-jam-lideranca-tecnica"
 date: "2026-05-01"
 type: "article"
-tags: ["liderança técnica", "engenharia", "processos", "spec"]
-excerpt: "Uma prática leve para alinhar contexto, hipótese, métricas e direção antes de implementar — reduzindo retrabalho e aumentando impacto real."
+tags: ["liderança técnica", "tech lead", "engenharia", "ia", "processos", "spec jam"]
+excerpt: "Um relato prático de como passamos a usar SPEC JAM para alinhar contexto, hipótese, métricas e direção antes do código, reduzindo retrabalho no time."
 published: true
 ---
 
 > Engenharia começa antes do código.
 
+Pequeno disclaimer antes do post 😄
+
+Esse é um dos meus primeiros conteúdos me expondo mais por aqui.
+
+A ideia surgiu depois de algumas conversas e incentivos do meu gestor para compartilhar mais sobre engenharia, liderança e como estamos pensando o desenvolvimento de software nessa nova era da IA.
+
+E sim... usei IA nesse processo também.
+Inclusive a "LIA" 😄
+
+Mas talvez essa seja justamente a parte mais interessante:
+
+Hoje não criamos mais sozinhos.
+
+A gente pensa junto.
+Refina junto.
+Questiona junto.
+Constrói junto.
+
+No fim, percebi que IA não substituiu a engenharia.
+
+Ela mudou a forma como colaboramos.
+
+Então resolvi começar a compartilhar um pouco dessa jornada e das ideias que estamos experimentando no time.
+
 ## O que é SPEC JAM?
 
-SPEC JAM é uma prática colaborativa e leve de engenharia, pensada para o contexto atual com IA.
+Nos últimos meses, como Tech Lead, comecei a perceber uma mudança importante na engenharia de software.
 
-O objetivo é simples:
+O problema já não é mais só "conseguir construir".
 
-- criar clareza antes da implementação
-- alinhar o time em torno do problema real
-- definir hipóteses antes de codar
-- reduzir ambiguidade e retrabalho
+Com IA, copilots e geração automática de código, implementar ficou muito mais rápido.
+
+Mas isso trouxe outra dificuldade:
+
+👉 estamos alinhando o problema certo antes de começar?
+
+Foi aí que começamos a testar um novo flow no time: o SPEC JAM.
+
+SPEC JAM é uma sessão colaborativa e leve de engenharia focada em:
+
+- entender contexto
+- alinhar hipóteses
+- reduzir ambiguidade
+- criar direção antes da implementação
 - validar impacto, não apenas entrega
 
 Não é um framework ágil pesado.
-É uma sessão de alinhamento para gerar entendimento, direção e confiança de execução.
+É uma sessão curta para gerar clareza, entendimento compartilhado e confiança de execução.
 
-## Por que SPEC JAM existe
+## Por que isso passou a importar mais agora
 
-Com assistentes de IA e geração de código, implementar ficou mais rápido.
+Muitas vezes o fluxo acaba virando:
 
-O gargalo mudou:
+**Jira → pega issue → código → PR → próxima.**
 
-- entender o problema certo
-- alinhar decisões entre pessoas
-- escolher bem a direção técnica
-- medir se houve impacto de verdade
+E no meio aparecem:
 
-SPEC JAM melhora exatamente essa etapa.
+- dúvidas
+- retrabalho
+- mudanças de direção
+- discussões arquiteturais tardias
+
+Não porque o time é ruim.
+
+Mas porque clareza virou o novo gargalo.
+
+Com assistentes de IA, o custo de implementar caiu.
+O valor de entender bem o problema subiu.
+
+Talvez esse seja um dos maiores shifts da era da IA:
+
+👉 código ficou mais barato
+👉 entendimento ficou mais valioso
 
 ## Princípios centrais
 
@@ -67,74 +113,44 @@ As melhores decisões de engenharia surgem de entendimento compartilhado.
 Entregar tarefa não é o objetivo final.
 O objetivo é resultado mensurável.
 
-## Fluxo de engenharia
+## Como esse flow entra na prática
+
+A ideia era simples:
+
+Antes do código, o time precisa responder:
+
+- Qual problema estamos resolvendo?
+- O que acreditamos que melhora isso?
+- Como vamos medir impacto?
+- O que pode dar errado?
+
+O flow ficou algo próximo disso:
 
 ```text
-Idea → Review → Epic → SPEC JAM → READY → In Progress → Review → Done → Validation
+Idea -> Review -> Epic -> SPEC JAM -> READY -> In Progress -> Review -> Done -> Validation
 ```
 
-## Como funciona cada etapa
+O mais interessante é que isso mudou bastante a dinâmica das conversas.
 
-### Idea
+Menos:
 
-Uma observação, oportunidade ou problema detectado.
+- "qual framework usar?"
+- "qual classe criar?"
 
-Exemplos comuns:
+Mais:
 
-- dor operacional
-- fricção de cliente
-- ineficiência técnica
-- limitação de processo
+- "isso resolve o problema?"
+- "como validamos sucesso?"
+- "qual hipótese estamos testando?"
 
-### Review
+## Como funciona a sessão
 
-Avaliação inicial do valor do problema.
+A sessão de SPEC JAM acontece depois que a Epic já foi priorizada.
 
-Perguntas:
+- Duração: 20 a 40 minutos
+- Participantes: Tech Lead, engenheiros envolvidos e stakeholders quando necessário
 
-- Isso realmente importa?
-- Existe impacto de negócio ou operacional?
-- Vale investimento de engenharia agora?
-
-Saídas possíveis:
-
-- não vira Epic
-- vira Epic
-
-### Epic
-
-Epic representa um problema relevante com impacto esperado.
-
-Epic **não é**:
-
-- agrupador de tarefas
-- pacote técnico
-- contêiner de Jira sem direção
-
-### Context Sync
-
-Sessão de priorização entre liderança e engenharia para decidir o que começa agora.
-
-Participantes típicos:
-
-- Tech Lead
-- liderança de engenharia
-- produto (opcional)
-
-Saída:
-
-- Epic priorizada
-
-## A sessão de SPEC JAM
-
-Acontece após priorização da Epic.
-
-- **Duração:** 20 a 40 minutos
-- **Participantes:** Tech Lead, engenheiros envolvidos e stakeholders quando necessário
-
-### Objetivo
-
-Transformar problema em direção executável.
+O objetivo é transformar problema em direção executável.
 
 A sessão deve produzir:
 
@@ -144,7 +160,7 @@ A sessão deve produzir:
 - métricas de sucesso
 - direção técnica inicial
 
-## Estrutura da SPEC
+Uma estrutura simples que ajuda bastante é essa:
 
 ```md
 # SPEC
@@ -167,15 +183,19 @@ O que pode dar errado?
 
 ## O que SPEC JAM não é
 
-- reunião longa
-- perfeccionismo arquitetural
-- debate profundo de implementação
+Uma das coisas que mais gostei é que o SPEC JAM não tenta ser mais um framework pesado.
+
+Não é:
+
+- planning infinito
+- documentação excessiva
+- arquitetura perfeita antes do tempo
 - grooming de backlog
-- cerimônia ágil pesada
+- debate profundo de implementação
 
-É foco em clareza e direção.
+É uma sessão curta e colaborativa para gerar clareza.
 
-## READY: critério de entrada para execução
+## READY de verdade
 
 Uma issue está READY quando:
 
@@ -188,42 +208,6 @@ Uma issue está READY quando:
 Em termos práticos:
 
 > outra pessoa engenheira consegue executar com autonomia.
-
-## Artefatos recomendados
-
-```text
-/specs/
-  nome-da-feature/
-    spec.md
-    design.md
-    decision.md
-```
-
-### spec.md (obrigatório)
-
-Define:
-
-- problema
-- hipótese
-- métricas
-- riscos
-
-### design.md (opcional)
-
-Útil quando há:
-
-- múltiplos sistemas
-- decisões arquiteturais relevantes
-- integrações importantes
-
-### decision.md (opcional)
-
-Documenta:
-
-- decisão técnica
-- alternativas avaliadas
-- trade-offs
-- consequências
 
 ## Depois da sessão
 
@@ -253,29 +237,27 @@ Done não significa, automaticamente, sucesso.
 
 ### Validation
 
-Após deploy, validar impacto:
+Depois do deploy, a pergunta volta a ser sobre impacto:
 
 - a métrica melhorou?
 - o comportamento mudou?
 - a dor reduziu?
 - ainda vale investir?
 
-Resultados possíveis:
-
-- sucesso
-- sucesso parcial
-- pivô
-- encerramento
-
-## Mensagens-chave
-
-- Engenharia começa antes do código.
-- Sem SPEC, sem início.
-- Clareza reduz retrabalho.
-- IA gera código; engenheiros geram direção.
-- Done não é sinônimo de impacto.
-
 ## Fechamento
+
+No fim, percebi que engenharia moderna está cada vez menos ligada apenas à implementação...
+
+...e cada vez mais ligada a:
+
+- contexto
+- decisão
+- colaboração
+- impacto
+
+Porque código é implementação.
+
+**Engenharia é direção.**
 
 Na engenharia moderna, velocidade de implementação é só parte da equação.
 
@@ -287,3 +269,5 @@ A vantagem real está em:
 - validar impacto continuamente
 
 SPEC JAM existe para sustentar essa evolução.
+
+#SoftwareEngineering #TechLead #Architecture #AI #Engineering #Leadership #SPECJAM
