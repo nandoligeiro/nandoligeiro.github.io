@@ -1,9 +1,19 @@
 import { useMemo, useState } from 'react'
 
+const SITE_URL = 'https://nandoligeiro.github.io'
+
+function buildCanonicalShareUrl(url) {
+  if (!url) return SITE_URL
+
+  const current = new URL(url)
+  const pathname = current.pathname.endsWith('/') ? current.pathname : `${current.pathname}/`
+  return `${current.origin}${pathname}`
+}
+
 export default function ShareActions({ title, excerpt }) {
   const [copied, setCopied] = useState(false)
   const canShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function'
-  const url = typeof window !== 'undefined' ? window.location.href : ''
+  const url = typeof window !== 'undefined' ? buildCanonicalShareUrl(window.location.href) : SITE_URL
 
   const shareLinks = useMemo(() => {
     const encodedUrl = encodeURIComponent(url)
