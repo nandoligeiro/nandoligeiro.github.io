@@ -1,37 +1,61 @@
 import { pathToSlug } from './helpers'
 
-// Build-time imports — mdPlugin transforms each .md into a JS module
-// Each module exports: { frontmatter, html, content, readTime }
-
 const blogModules = import.meta.glob('/content/blog/*.md', { eager: true })
 const leadershipModules = import.meta.glob('/content/leadership/*.md', { eager: true })
 const portfolioModules = import.meta.glob('/content/portfolio/*.md', { eager: true })
 
-function processEntries(modules) {
+function sortByDateDesc(a, b) {
+  return new Date(b.date || 0) - new Date(a.date || 0)
+}
+
+function processEntries(modules, source) {
   return Object.entries(modules)
     .map(([path, mod]) => {
       const { frontmatter, html, content, readTime } = mod.default
       const slug = frontmatter.slug || pathToSlug(path)
-      return { ...frontmatter, slug, html, content, readTime }
+
+      return {
+        ...frontmatter,
+        slug,
+        html,
+        content,
+        readTime,
+        type: frontmatter.type || 'article',
+        source,
+        sourceLabel: source === 'blog' ? 'Blog' : 'Lideranca',
+        href: `/tech-notes/${slug}`,
+        legacyHref: `/${source}/${slug}`,
+      }
     })
-    .filter(p => p.published !== false)
-    .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))
+    .filter(post => post.published !== false)
+    .sort(sortByDateDesc)
+}
+
+const blogPosts = processEntries(blogModules, 'blog')
+const leadershipPosts = processEntries(leadershipModules, 'leadership')
+
+export function getTechNotes() {
+  return [...blogPosts, ...leadershipPosts].sort(sortByDateDesc)
+}
+
+export function getTechNote(slug) {
+  return getTechNotes().find(post => post.slug === slug) || null
 }
 
 export function getBlogPosts() {
-  return processEntries(blogModules)
+  return blogPosts
 }
 
 export function getBlogPost(slug) {
-  return getBlogPosts().find(p => p.slug === slug) || null
+  return blogPosts.find(post => post.slug === slug) || null
 }
 
 export function getLeadershipContent() {
-  return processEntries(leadershipModules)
+  return leadershipPosts
 }
 
 export function getLeadershipItem(slug) {
-  return getLeadershipContent().find(p => p.slug === slug) || null
+  return leadershipPosts.find(post => post.slug === slug) || null
 }
 
 export function getPortfolioItems() {
@@ -46,8 +70,8 @@ export function getPortfolioItems() {
       }
     })
     .sort((a, b) => {
-      const ya = parseInt(a.period?.split('–')[0] || a.period || 0)
-      const yb = parseInt(b.period?.split('–')[0] || b.period || 0)
+      const ya = parseInt(a.period?.split('–')[0] || a.period || 0, 10)
+      const yb = parseInt(b.period?.split('–')[0] || b.period || 0, 10)
       return yb - ya
     })
 }

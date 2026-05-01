@@ -5,6 +5,8 @@ date: "2026-05-01"
 type: "article"
 tags: ["liderança técnica", "tech lead", "engenharia", "ia", "processos", "spec jam"]
 excerpt: "Um relato prático de como passamos a usar SPEC JAM para alinhar contexto, hipótese, métricas e direção antes do código, reduzindo retrabalho no time."
+cover: "/tech-notes/specjam.png"
+coverAlt: "Infográfico do fluxo SPEC JAM com etapas, princípios e perguntas guia."
 published: true
 ---
 
