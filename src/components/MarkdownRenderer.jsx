@@ -13,7 +13,9 @@ export default function MarkdownRenderer({ html }) {
           hljs.highlightElement(block)
         })
       }
-    } catch {}
+    } catch {
+      return
+    }
     // Open external links in new tab
     ref.current.querySelectorAll('a[href^="http"]').forEach(a => {
       a.setAttribute('target', '_blank')

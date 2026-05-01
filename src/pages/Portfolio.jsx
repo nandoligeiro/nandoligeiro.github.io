@@ -37,7 +37,7 @@ export default function Portfolio() {
 
         {/* Personal stack */}
         <section style={{ marginBottom: '3rem' }}>
-          <h2 style={{ fontFamily: 'Space Grotesk', fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', fontSize: '0.8rem' }}>
+          <h2 style={{ fontFamily: 'Space Grotesk', fontSize: '0.8rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             Stack Pessoal
           </h2>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
