@@ -7,6 +7,14 @@ import TagChip from '../components/TagChip'
 import { formatDate } from '../lib/helpers'
 import { getTechNote, getTechNotes } from '../lib/posts'
 
+const SITE_URL = 'https://nandoligeiro.github.io'
+
+function toAbsoluteUrl(url = '/') {
+  if (!url) return SITE_URL
+  if (url.startsWith('http://') || url.startsWith('https://')) return url
+  return new URL(url, `${SITE_URL}/`).toString()
+}
+
 export default function TechNotePost() {
   const { slug } = useParams()
   const [progress, setProgress] = useState(0)
@@ -16,6 +24,8 @@ export default function TechNotePost() {
   const idx = allPosts.findIndex(item => item.slug === slug)
   const prev = allPosts[idx + 1] || null
   const next = allPosts[idx - 1] || null
+  const canonicalUrl = `${SITE_URL}/tech-notes/${slug}/`
+  const imageUrl = post?.cover ? toAbsoluteUrl(post.cover) : `${SITE_URL}/tech-notes/specjam.png`
 
   useEffect(() => {
     const onScroll = () => {
@@ -47,7 +57,16 @@ export default function TechNotePost() {
         <meta name="description" content={post.excerpt} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
-        {post.cover && <meta property="og:image" content={post.cover} />}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:secure_url" content={imageUrl} />
+        <meta property="og:image:alt" content={post.coverAlt || post.title} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:image" content={imageUrl} />
+        <link rel="canonical" href={canonicalUrl} />
       </Helmet>
 
       <div className="read-progress" style={{ width: `${progress}%` }} />
