@@ -1,0 +1,188 @@
+v class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">Exemplo</span></div>
+    <div class="meta"><span class="chip">Skill usando componentes compartilhados</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Exemplo concreto</div>
+    <h2>Uma skill de PR Review pode ficar assim.</h2>
+    <div class="grid wide-right">
+      <div class="card red">
+        <div class="label">Declaração conceitual</div>
+        <div class="list">
+          <div class="li"><span class="tick">✓</span><p class="body"><b>shared scripts:</b> git.collect-diff, java.test, api.validate-openapi</p></div>
+          <div class="li"><span class="tick">✓</span><p class="body"><b>shared references:</b> engineering.java, engineering.observability, cards.api-guidelines</p></div>
+          <div class="li"><span class="tick">✓</span><p class="body"><b>shared/assets:</b> reviews/pr-review-template</p></div>
+        </div>
+      </div>
+      <div class="term">
+        <div class="termbar"><span class="ball b1"></span><span class="ball b2"></span><span class="ball b3"></span><span class="termtitle">skills/credit-card-pr-review/SKILL.md</span></div>
+        <div class="termcontent">## Validation
+
+Run:
+- shared/scripts/git/collect-diff/
+- shared/scripts/java/test/
+- shared/scripts/api/validate-openapi/
+
+## Architecture
+Consult:
+- shared/references/engineering/java.md
+- shared/references/engineering/observability.md
+- shared/references/cards/api-guidelines.md
+
+## Output
+Use:
+- shared/assets/reviews/pr-review-template.md</div>
+      </div>
+    </div>
+    <div class="formula">A skill continua pequena porque ela <b>orquestra</b>. O resto ela <b>consome</b>.</div>
+  </div>
+  <div class="footer"><span>Autonomia conceitual com reutilização real</span><span class="page">09</span></div>
+  <aside class="speaker"><b>Nota:</b> bom momento para dizer: a skill sabe “o que precisa”, mas não precisa carregar toda implementação dentro dela.</aside>
+</div></section>
+
+<section><div class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">Governança</span></div>
+    <div class="meta"><span class="chip">Tooling e qualidade</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Camada 5</div>
+    <h2>Monorepo de skills sem tooling vira só uma pasta grande com esperanças.</h2>
+    <div class="grid cols3">
+      <div class="card cyan">
+        <div class="label">validate-skills</div>
+        <p class="body">Valida frontmatter, paths, naming, dependências e contratos do package.</p>
+      </div>
+      <div class="card green">
+        <div class="label">replay-skill</div>
+        <p class="body">Roda tarefas conhecidas para conferir se a skill ainda se comporta como esperado.</p>
+      </div>
+      <div class="card amber">
+        <div class="label">package-skill</div>
+        <p class="body">Empacota, exporta ou prepara distribuição quando necessário.</p>
+      </div>
+    </div>
+    <div class="grid cols2">
+      <div class="card">
+        <div class="label">Práticas recomendadas</div>
+        <p class="body">Owner por domínio, changelog, revisão por PR, sem segredos no repo, e testes de regressão para skills críticas.</p>
+      </div>
+      <div class="card red">
+        <div class="label">Pergunta útil</div>
+        <p class="body">Se um shared script muda, quais skills quebram? O tooling deve ajudar a responder isso rápido.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Governança é parte da arquitetura</span><span class="page">10</span></div>
+  <aside class="speaker"><b>Nota:</b> explicar que tooling é o que impede o ecossistema de degradar conforme o monorepo cresce.</aside>
+</div></section>
+
+<section><div class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">Adoção</span></div>
+    <div class="meta"><span class="chip">Como começar</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Plano de adoção</div>
+    <h2>Não precisa nascer perfeito. Precisa nascer governável.</h2>
+    <div class="table">
+      <div class="head">Etapa</div><div class="head">Objetivo</div><div class="head">Entregável</div><div class="head">Observação</div>
+      <div>1. Skill piloto</div><div>Validar valor</div><div>PR Review Java/Kotlin</div><div>Boa para medir rápido</div>
+      <div>2. Extrair shared scripts</div><div>Reduzir duplicação</div><div>git.diff, java.test, api.validate-openapi</div><div>Extrair só o que se repetir</div>
+      <div>3. Criar shared references</div><div>Centralizar regras úteis</div><div>API, observability, security</div><div>Sem wiki infinita</div>
+      <div>4. Padronizar assets</div><div>Uniformizar saída</div><div>Templates de review/findings</div><div>Facilita uso pelo time</div>
+      <div>5. Subir tooling</div><div>Garantir qualidade</div><div>validate, replay, package</div><div>Sem isso, o repo degrada</div>
+    </div>
+  </div>
+  <div class="footer"><span>Pequeno no início, sustentável no longo prazo</span><span class="page">11</span></div>
+  <aside class="speaker"><b>Nota:</b> mostrar que dá para começar simples e evoluir aos poucos, sem tentar desenhar a “plataforma perfeita” no dia 1.</aside>
+</div></section>
+
+<section><div class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">Fechamento</span></div>
+    <div class="meta"><span class="chip">Resumo executivo</span></div>
+  </div>
+  <div class="content" style="align-content:center;justify-items:center;text-align:center;gap:18px">
+    <div class="eyebrow">Recado final</div>
+    <h1 style="max-width:1100px">Num monorepo de skills, reuso bom não vive na skill inteira. Vive em componentes shared bem definidos.</h1>
+    <p class="subtitle" style="max-width:980px">A recomendação arquitetural é clara: <b>skills/</b> preserva workflow, <b>shared/scripts/</b> concentra execução reutilizável, <b>shared/references/</b> guarda regras transversais, <b>shared/assets/</b> padroniza artefatos e <b>tooling/</b> governa o ecossistema.</p>
+    <div class="grid cols5" style="display:grid;grid-template-columns:repeat(5,1fr);width:100%;max-width:1220px;gap:14px">
+      <div class="card red"><div class="stat">1</div><div class="small">skills/</div></div>
+      <div class="card cyan"><div class="stat">2</div><div class="small">shared/scripts/</div></div>
+      <div class="card violet"><div class="stat">3</div><div class="small">shared/references/</div></div>
+      <div class="card amber"><div class="stat">4</div><div class="small">shared/assets/</div></div>
+      <div class="card green"><div class="stat">5</div><div class="small">tooling/</div></div>
+    </div>
+  </div>
+  <div class="footer"><span>Obrigado — perguntas, críticas e sugestões são bem-vindas.</span><span class="page">12</span></div>
+  <aside class="speaker"><b>Nota:</b> fechar com a frase-chave: a unidade de reuso deixa de ser a skill inteira e passa a ser o script, a referência ou o asset compartilhado.</aside>
+</div></section>
+
+
+<section><div class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">Referências</span></div>
+    <div class="meta"><span class="chip">Agradecimento</span><span class="chip">Links</span></div>
+  </div>
+  <div class="content" style="align-content:center;gap:16px">
+    <div>
+      <div class="eyebrow">Base conceitual</div>
+      <h2>Referências usadas para chegar na estrutura proposta.</h2>
+      <p class="subtitle">Os conceitos da apresentação combinam práticas de custom skills, skill packages, progressive disclosure e a discussão recente sobre reconstrução e decomposição de skills.</p>
+    </div>
+    <div class="grid cols2">
+      <div class="card cyan">
+        <div class="label">Custom Skills</div>
+        <h3>How to create custom skills</h3>
+        <p class="body">Documentação de criação de skills, organização com <b>SKILL.md</b>, anexos, scripts e carregamento progressivo.</p>
+        <p class="small" style="margin-top:10px"><a class="link" href="https://support.claude.com/en/articles/12512198-how-to-create-custom-skills" target="_blank" rel="noopener noreferrer">https://support.claude.com/en/articles/12512198-how-to-create-custom-skills</a></p>
+      </div>
+      <div class="card red">
+        <div class="label">Research</div>
+        <h3>Workflow-to-Skill</h3>
+        <p class="body">Paper sobre reconstrução de skills a partir de traces, representação intermediária e melhor depuração de workflows.</p>
+        <p class="small" style="margin-top:10px"><a class="link" href="https://arxiv.org/pdf/2606.06893" target="_blank" rel="noopener noreferrer">https://arxiv.org/pdf/2606.06893</a></p>
+      </div>
+    </div>
+    <div class="formula">Obrigado — perguntas, críticas e sugestões são bem-vindas.</div>
+  </div>
+  <div class="footer"><span>Fechamento e referências</span><span class="page">13</span></div>
+  <aside class="speaker"><b>Nota:</b> usar este slide final para agradecer, abrir espaço para perguntas e mostrar de forma transparente as referências que sustentaram a estrutura proposta.</aside>
+</div></section>
+
+</main>
+
+<script>
+const deck=document.getElementById('deck');
+const progress=document.getElementById('progress');
+const sections=[...document.querySelectorAll('section')];
+let i=0;
+function go(n){
+  i=Math.max(0,Math.min(sections.length-1,n));
+  deck.style.transform=`translateX(${-i*100}vw)`;
+  progress.style.width=`${((i+1)/sections.length)*100}%`;
+  location.hash=`slide-${i+1}`;
+}
+window.addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)) go(i+1);
+  if(['ArrowLeft','PageUp'].includes(e.key)) go(i-1);
+  if(e.key==='Home') go(0);
+  if(e.key==='End') go(sections.length-1);
+  if(e.key.toLowerCase()==='n') document.body.classList.toggle('show-notes');
+});
+let lock=false;
+window.addEventListener('wheel',e=>{
+  if(lock) return;
+  if(Math.abs(e.deltaY)>35 || Math.abs(e.deltaX)>35){
+    lock=true;
+    go(i + ((e.deltaY>0 || e.deltaX>0)?1:-1));
+    setTimeout(()=>lock=false,430);
+  }
+},{passive:true});
+const m=(location.hash||'').match(/slide-(\d+)/);
+go(m?Number(m[1])-1:0);
+</script>
+</body>
+</html>
