@@ -1,120 +1,98 @@
-# Script de apresentação — Modern Agent Skills para desenvolvedores
+# Script de apresentação — Modern Agent Skills
 
 ## Slide 1 — Modern Agent Skills para desenvolvedores
-A ideia desta apresentação é mostrar como trabalhar com skills de uma forma mais próxima de engenharia de software. Não estamos falando só de prompt. Estamos falando de criar um pacote que consiga ser acionado no momento certo, executar um fluxo conhecido, consultar contexto quando necessário e validar o resultado.
+A ideia desta apresentação é mostrar como trabalhar com skills de uma forma mais próxima de engenharia de software. Não estamos falando só de prompt. Estamos falando de criar capacidades que possam ser acionadas no momento certo, executar um fluxo conhecido, consultar contexto quando necessário e validar o resultado.
 
-O ponto principal é adaptar esses conceitos ao Devin Local e ao nosso dia a dia de desenvolvimento. A pergunta é: como transformar práticas repetíveis do time em algo que o agente consiga operar de forma previsível?
+O ponto principal é adaptar esses conceitos ao Devin Local e ao nosso dia a dia de desenvolvimento.
 
-**Transição:** antes de falar de estrutura, precisamos separar ferramenta de modelo operacional.
+**Transição:** existem dois caminhos principais para chegar a uma skill útil.
 
-## Slide 2 — Não estamos copiando uma ferramenta
-O objetivo não é reproduzir uma ferramenta externa dentro do banco. O que interessa são os padrões que fazem sentido para um harness de desenvolvimento: skills focadas, carregamento progressivo, scripts executáveis, referências e validação.
+## Slide 2 — Creation vs Reconstruction
+O primeiro caminho é criação. O time já conhece bem um procedimento e decide torná-lo explícito como skill.
 
-O Devin Local é o nosso runtime. Então qualquer conceito precisa funcionar no repositório real: ler código, rodar build, executar testes, validar contrato e produzir evidência.
+O segundo é reconstrução. O conhecimento já existe, mas está espalhado em conversas, PRs, comandos, logs e execuções anteriores. Nesse cenário, usamos essas evidências para reconstruir o procedimento.
 
-**Transição:** com essa premissa, quais conceitos estão aparecendo na engenharia moderna de skills?
+Criação organiza um workflow conhecido. Reconstrução recupera conhecimento operacional que estava implícito.
 
-## Slide 3 — Skills modernas envolvem mais do que escrever instruções
-Eu separo o ciclo de vida em alguns movimentos. Primeiro, criação: já conhecemos um procedimento e queremos transformá-lo em skill. Segundo, reconstrução: observamos execuções reais e tentamos recuperar o procedimento que estava implícito. Depois vêm decomposição, validação, replay e evolução.
+**Transição:** independentemente do caminho, precisamos controlar quanto contexto o agente carrega.
 
-Isso muda a conversa de prompt engineering para skill engineering. A skill deixa de ser texto estático e passa a ter ciclo de vida.
+## Slide 3 — Progressive Disclosure
+A ideia é simples: o agente não precisa carregar tudo de uma vez.
 
-**Transição:** o primeiro conceito importante é controlar quanto contexto o agente carrega.
+Primeiro ele precisa de informação suficiente para descobrir se uma skill é relevante. Depois carrega o `SKILL.md`. Scripts, referências e assets entram somente quando o fluxo exige.
 
-## Slide 4 — Progressive disclosure
-A ideia é simples: o agente não precisa carregar tudo de uma vez. Primeiro ele precisa de informação suficiente para saber se a skill é relevante. Depois carrega o SKILL.md. Scripts, referências e outros arquivos entram somente quando o fluxo exige.
+Isso reduz contexto inútil e deixa a execução mais previsível.
 
-Isso reduz contexto inútil e deixa a execução mais previsível. Para o Devin Local, isso combina bem com trabalhar diretamente no repo: o agente consulta o mínimo necessário a cada etapa.
+**Transição:** além de controlar contexto, precisamos decompor a execução de forma clara.
 
-**Transição:** além de carregar menos, precisamos desenhar skills menores.
+## Slide 4 — Decomposition
+Antes de empacotar uma skill, ajuda separar quatro perguntas.
 
-## Slide 5 — Skill boa é pequena o suficiente para ser testada
-Uma mega skill de “arquitetura completa” tende a misturar muitos objetivos, ativar mal e ser difícil de corrigir. É melhor trabalhar com tarefas repetíveis e delimitadas: PR review, revisão de API, investigação de incidente, análise Kafka ou observabilidade.
+Routing: quando ativar?
+Workflow: quais passos seguir?
+Semantics: quais regras orientam as decisões?
+Attachments: quais scripts, referências e assets serão usados?
 
-A pergunta prática é: consigo descrever entrada, fluxo, checks e saída dessa skill? Se não, provavelmente ela ainda está grande demais.
+Essa decomposição não precisa virar uma metodologia pesada. O valor está em deixar a skill explicável e corrigível.
 
-**Transição:** quando o procedimento já existe no trabalho real, não precisamos começar do zero.
+**Transição:** essa separação fica ainda mais útil quando algo falha.
 
-## Slide 6 — Trace-to-Skill
-Muitas vezes o conhecimento já existe, só está espalhado. Pode estar em uma conversa, em um PR, nos comandos que alguém rodou, nos arquivos que consultou e nas verificações feitas até chegar à solução.
+## Slide 5 — Skill Debugging
+Se a skill não ativou, começamos pelo routing. Se ativou e pulou uma etapa, olhamos o workflow. Se seguiu o fluxo, mas tomou uma decisão ruim, investigamos regras e referências. Se quebrou ao validar, olhamos scripts, paths, permissões ou dependências do runtime.
 
-O trace vira matéria-prima. A ideia é extrair desse histórico o gatilho, os passos, decisões, branches, verificações e recursos usados. A partir disso podemos produzir um primeiro draft de skill.
+O ganho é localizar a falha, em vez de reescrever a skill inteira.
 
-**Transição:** para reconstruir bem, ajuda decompor a execução antes de escrever o package final.
+**Transição:** até aqui falamos de uma skill. Agora entra a camada de delegação.
 
-## Slide 7 — Representação intermediária
-Aqui usamos RWSA como lente de decomposição, não como uma especificação oficial de ferramenta. Routing pergunta quando a skill deve ativar. Workflow mostra a sequência. Semantics representa as regras que orientam decisões. Attachments representa recursos como scripts e referências.
+## Slide 6 — Subagents
+Skill e subagent não são a mesma coisa.
 
-O valor é operacional: quando algo dá errado, conseguimos discutir qual componente falhou em vez de reescrever tudo.
+A skill é uma unidade de execução reutilizável: ela descreve como fazer determinada tarefa.
 
-**Transição:** essa decomposição fica ainda mais útil quando pensamos em debug.
+O subagent é uma unidade de delegação: recebe uma parte específica do problema, trabalha com escopo próprio e pode consumir uma ou mais skills.
 
-## Slide 8 — Skill debugging
-Se a skill não ativou, provavelmente começamos pelo routing. Se ativou e pulou uma etapa, olhamos o workflow. Se seguiu o fluxo, mas tomou uma decisão ruim, investigamos as regras e referências. Se quebrou ao validar, olhamos script, runtime e dependências.
+Subagents fazem sentido quando existe especialização, paralelismo ou necessidade de isolar contexto. Por exemplo, um PR Review pode delegar arquitetura, contratos e observabilidade para subagentes diferentes.
 
-O ganho é localizar a falha. Isso aproxima manutenção de skill da manutenção de software.
+Mas não precisamos transformar cada skill em subagent. Para tarefas pequenas ou determinísticas, uma skill simples ou um script já é suficiente.
 
-**Transição:** agora precisamos trazer tudo isso para o Devin Local.
+**Transição:** tudo isso precisa funcionar no nosso runtime real.
 
-## Slide 9 — Adaptação para o nosso harness
-Uma skill útil para o Devin Local precisa saber operar no repositório. Precisa entender estrutura do projeto, comandos de build, testes, contratos, logs e convenções relevantes ao fluxo.
+## Slide 7 — Adaptação para Devin Local
+Uma skill útil para o Devin Local precisa saber operar no repositório.
 
-A saída também precisa ser concreta: patch, parecer, finding, checklist, evidência ou próximos passos. Não basta responder bem; precisa operar bem.
+Ela precisa entender estrutura do projeto, comandos de build, testes, contratos, arquivos e convenções relevantes ao fluxo. Quando houver subagents, o parent agent também precisa saber o que delegar, qual escopo passar e que resultado esperar de volta.
 
-**Transição:** isso nos leva à estrutura interna do package.
+A saída precisa ser concreta: patch, parecer, finding, checklist, evidência ou próximos passos.
 
-## Slide 10 — Estrutura mínima de uma Skill
-O SKILL.md coordena o fluxo. Scripts executam ou validam o que precisa ser determinístico. References guardam regras e contexto consultados sob demanda. Assets carregam templates, exemplos e artefatos reutilizáveis.
+**Transição:** e precisamos provar que o comportamento continua correto.
 
-A ideia não é criar muitas pastas por cerimônia. É separar responsabilidades para manter o fluxo principal legível e os detalhes nos lugares certos.
-
-**Transição:** existem dois caminhos para chegar a esse package: criação e reconstrução.
-
-## Slide 11 — Criação de skill
-Quando o processo já é conhecido, começamos pela tarefa repetível. Definimos resultado esperado, desenhamos workflow, identificamos branches e decidimos quais partes precisam virar script ou referência.
-
-Depois testamos a skill num caso real. O objetivo do primeiro ciclo não é perfeição; é descobrir se a skill consegue repetir o procedimento com menos intervenção.
-
-**Transição:** o outro cenário é quando o processo ainda está espalhado nas execuções.
-
-## Slide 12 — Reconstrução de skill
-Aqui começamos pelos traces. Coletamos execuções reais, procuramos padrões, separamos gatilho, workflow, regras e anexos e então geramos um draft.
-
-O passo importante é replay: pegar tarefas conhecidas e verificar se a nova skill preserva o comportamento útil das execuções que serviram de base.
-
-**Transição:** replay sozinho não basta; tudo que puder ser determinístico deve ser validado de forma executável.
-
-## Slide 13 — Executable validation
+## Slide 8 — Validation & Replay
 Se uma regra pode ser checada por build, teste, lint, schema ou script, não faz sentido deixá-la somente para interpretação do modelo.
 
-O modelo continua importante para entender contexto e tomar decisões. Mas a verificação objetiva deve produzir evidência objetiva. Um bom resumo é: LLM interpreta, script verifica e replay mostra se o comportamento continua correto.
+A validação pode ser dividida em três níveis: estrutural, executável e comportamental.
 
-**Transição:** num ambiente corporativo, essa execução também precisa de limites.
+O replay é o teste final: pegamos tarefas conhecidas e verificamos se a skill continua produzindo o comportamento esperado.
 
-## Slide 14 — Segurança e operação
-Skill não deve carregar segredo, token ou dado sensível. Também precisa deixar claro o que pode ler, escrever e executar, além de quando deve parar e pedir aprovação.
+Um bom resumo é: LLM interpreta, script verifica e replay prova.
 
-Governança aqui não é uma camada posterior. Ela faz parte do desenho da skill, principalmente quando o agente opera repositórios, ferramentas e ambientes internos.
+**Transição:** agora conseguimos resumir o modelo mental completo.
 
-**Transição:** para validar tudo isso, vale começar com um piloto pequeno e mensurável.
+## Slide 9 — Prompt, Skill, Subagent e Harness
+Prompt é bom para exploração e pedidos abertos.
 
-## Slide 15 — Piloto sugerido: PR Review Java/Kotlin
-PR Review é um bom primeiro caso porque tem entrada clara, fluxo repetível e resultado verificável. Podemos testar arquitetura, contrato, testes, observabilidade, tratamento de erro e segurança.
+Skill é boa para operação repetível.
 
-A métrica não precisa ser sofisticada: tempo economizado, findings úteis, retrabalho evitado e consistência do review. Isso já mostra se a abordagem tem valor.
+Subagent é útil para delegar partes independentes ou especializadas de uma tarefa maior.
 
-**Transição:** com isso, chegamos à mensagem principal.
+Harness fornece runtime, ferramentas, permissões e limites.
 
-## Slide 16 — Prompt explora. Skill opera. Harness controla.
-Prompt continua ótimo para exploração e tarefas abertas. Skill é onde codificamos uma operação repetível. Harness é quem fornece runtime, ferramentas e limites.
+A hierarquia que estamos propondo é simples: o harness executa, o agent coordena, o subagent recebe uma parte do trabalho e a skill ensina como aquela parte deve ser feita.
 
-A evolução que estamos propondo é tratar skills como assets internos de engenharia: versionáveis, revisáveis, testáveis e evolutivos.
+**Transição:** por fim, as referências usadas para chegar a essa visão.
 
-**Transição:** no último slide, deixamos transparentes as referências usadas.
+## Slide 10 — Referências e agradecimentos
+As principais referências são a documentação de Custom Skills, o paper Workflow-to-Skill e a documentação sobre sistemas multiagente e delegação.
 
-## Slide 17 — Referências e agradecimentos
-As duas referências principais são a documentação de custom skills e o paper Workflow-to-Skill, que discute reconstrução de workflows, representação intermediária e replay comportamental.
-
-Essas fontes não determinam a nossa arquitetura interna. Elas servem como base para os conceitos que estamos adaptando ao Devin Local e ao nosso contexto.
+Essas fontes servem como base conceitual. A adaptação para o Devin Local e a forma como organizamos nossa arquitetura são decisões de engenharia do nosso contexto.
 
 Obrigado. Perguntas, críticas e sugestões são bem-vindas.
