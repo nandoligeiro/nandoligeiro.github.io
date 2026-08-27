@@ -1,0 +1,223 @@
+ separar <b>workflow</b> do que é <b>reutilização estrutural</b>.</div>
+  </div>
+  <div class="footer"><span>Monorepo bom precisa de fronteiras nítidas</span><span class="page">02</span></div>
+  <aside class="speaker"><b>Nota:</b> o ponto aqui é fugir dos dois extremos: tudo duplicado ou tudo centralizado demais.</aside>
+</div></section>
+
+<section><div class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">Recomendação</span></div>
+    <div class="meta"><span class="chip">Arquitetura alvo</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Tese arquitetural</div>
+    <h2>A unidade de workflow continua sendo a Skill. O reuso acontece em shared/scripts, shared/references e shared/assets.</h2>
+    <div class="flow">
+      <div class="node"><div class="n1">skills/</div><div class="n2">What to do</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="n1">shared/scripts/</div><div class="n2">How to execute</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="n1">shared/references/</div><div class="n2">How to decide</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="n1">shared/assets/</div><div class="n2">How to materialize</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="n1">tooling/</div><div class="n2">How to govern</div></div>
+    </div>
+    <div class="grid cols2">
+      <div class="card cyan">
+        <div class="label">Mudança de mentalidade</div>
+        <p class="body">Não tente reutilizar a <b>skill inteira</b>. Reutilize operações, conhecimento transversal e templates.</p>
+      </div>
+      <div class="card green">
+        <div class="label">Ganho</div>
+        <p class="body">Cada skill continua clara como workflow de negócio, mas sem reimplementar tudo do zero.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Skill = workflow · Shared script = reutilização</span><span class="page">03</span></div>
+  <aside class="speaker"><b>Nota:</b> essa é a principal recomendação da arquitetura. Vale falar isso bem devagar porque muda o desenho do repo inteiro.</aside>
+</div></section>
+
+<section><div class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">Monorepo Shape</span></div>
+    <div class="meta"><span class="chip">Estrutura recomendada</span></div>
+  </div>
+  <div class="content" style="align-content:start;gap:10px">
+    <div>
+      <div class="eyebrow">Layout sugerido</div>
+      <h2>Manter o package da skill, mas permitir reuso controlado.</h2>
+    </div>
+    <div class="grid" style="grid-template-columns:1.05fr .95fr;gap:12px;align-items:stretch">
+      <div class="term">
+        <div class="termbar"><span class="ball b1"></span><span class="ball b2"></span><span class="ball b3"></span><span class="termtitle">skills-monorepo/</span></div>
+        <div class="termcontent" style="font-size:12.5px;line-height:1.28;padding:10px 12px">skills-monorepo/
+├── skills/
+│   ├── credit-card-pr-review/
+│   │   ├── SKILL.md
+│   │   ├── scripts/
+│   │   ├── references/
+│   │   └── assets/
+│   ├── api-design-review/
+│   └── kafka-investigation/
+├── shared/
+│   ├── scripts/
+│   │   ├── java/run-tests.sh
+│   │   ├── api/validate-openapi.sh
+│   │   └── git/collect-diff.sh
+│   ├── references/
+│   │   ├── engineering/observability.md
+│   │   └── security/api-security.md
+│   └── assets/
+│       ├── reviews/pr-review-template.md
+│       └── adr/adr-template.md
+└── tooling/
+    ├── validate-skills.py
+    ├── replay-skill.sh
+    └── package-skill.sh</div>
+      </div>
+      <div class="grid" style="gap:10px">
+        <div class="card red"><div class="label">skills/</div><p class="body">Cada skill mantém seu package: <b>SKILL.md</b>, <b>scripts/</b>, <b>references/</b> e <b>assets/</b>.</p></div>
+        <div class="card cyan"><div class="label">shared/scripts/</div><p class="body">Execução reutilizável: testes, OpenAPI, Git diff, coleta de evidência.</p></div>
+        <div class="card violet"><div class="label">shared/references/ + shared/assets/</div><p class="body">Padrões transversais e templates compartilhados, usados sob demanda.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Package local + shared controlado</span><span class="page">04</span></div>
+  <aside class="speaker"><b>Nota:</b> reforçar que não estamos abandonando o conceito de package. A skill continua autocontida conceitualmente; só extraímos o que realmente se repete.</aside>
+</div></section>
+
+<section><div class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">skills/</span></div>
+    <div class="meta"><span class="chip">Workflow layer</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Camada 1</div>
+    <h2>skills/ guarda o workflow de negócio. Aqui mora o “o que fazer”.</h2>
+    <div class="grid cols2">
+      <div class="card red">
+        <div class="label">Deve conter</div>
+        <div class="list">
+          <div class="li"><span class="tick">✓</span><p class="body"><b>SKILL.md</b> com trigger, objetivo, workflow e output.</p></div>
+          <div class="li"><span class="tick">✓</span><p class="body"><b>references/</b> locais quando o contexto for exclusivo daquela skill.</p></div>
+          <div class="li"><span class="tick">✓</span><p class="body"><b>shared/assets/</b> locais quando o template for específico.</p></div>
+        </div>
+      </div>
+      <div class="card amber">
+        <div class="label">Não deve virar</div>
+        <div class="list">
+          <div class="li"><span class="cross">×</span><p class="body">Uma cópia gigante de scripts compartilháveis.</p></div>
+          <div class="li"><span class="cross">×</span><p class="body">Uma wiki inteira do domínio.</p></div>
+          <div class="li"><span class="cross">×</span><p class="body">Um “mega pacote” que tenta resolver todo backend do banco.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="formula">Regra prática: <b>skills/</b> preserva autonomia conceitual, não isolamento absoluto.</div>
+  </div>
+  <div class="footer"><span>Skill continua sendo a unidade de comportamento</span><span class="page">05</span></div>
+  <aside class="speaker"><b>Nota:</b> autonomia conceitual quer dizer que a skill ainda é legível sozinha, mesmo usando componentes compartilhados.</aside>
+</div></section>
+
+<section><div class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">shared/scripts/</span></div>
+    <div class="meta"><span class="chip">Reuse layer</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Camada 2</div>
+    <h2>shared/scripts/ concentra execução reutilizável.</h2>
+    <div class="grid cols2">
+      <div class="term">
+        <div class="termbar"><span class="ball b1"></span><span class="ball b2"></span><span class="ball b3"></span><span class="termtitle">shared/scripts/</span></div>
+        <div class="termcontent">shared/scripts/
+├── java/
+│   ├── test/
+│   ├── build/
+│   └── check-architecture/
+├── api/
+│   └── validate-openapi/
+├── git/
+│   └── collect-diff/
+├── kafka/
+│   └── inspect-dlq/
+└── observability/
+    └── inspect-logging/</div>
+      </div>
+      <div class="grid">
+        <div class="card cyan"><div class="label">Papel</div><p class="body">Empacotar operações técnicas reutilizáveis. Ex.: validar OpenAPI, rodar testes Maven, coletar diff do Git.</p></div>
+        <div class="card green"><div class="label">Vantagem</div><p class="body">Diminui duplicação sem forçar skills genéricas demais. Você compartilha a execução, não o workflow todo.</p></div>
+        <div class="card amber"><div class="label">Regra</div><p class="body">Só sobe para shared script o que é <b>realmente transversal</b> e estável.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Scripts compartilhados são melhores alvos de reuso do que skills inteiras</span><span class="page">06</span></div>
+  <aside class="speaker"><b>Nota:</b> essa é a camada mais importante para explicar a estratégia de reuso. É aqui que evitamos duplicação sem apagar contexto das skills.</aside>
+</div></section>
+
+<section><div class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">shared/references/ & shared/assets/</span></div>
+    <div class="meta"><span class="chip">Decision + output</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Camadas 3 e 4</div>
+    <h2>Nem todo shared é script. Parte do reuso está em conhecimento e artefatos.</h2>
+    <div class="grid cols2">
+      <div class="card violet">
+        <div class="label">shared/references/</div>
+        <div class="list">
+          <div class="li"><span class="tick">✓</span><p class="body">Guidelines de API, observabilidade, segurança, Java, DDD.</p></div>
+          <div class="li"><span class="tick">✓</span><p class="body">Regras transversais usadas por mais de uma skill.</p></div>
+          <div class="li"><span class="tick">✓</span><p class="body">Domínio cards/ só quando for realmente compartilhado.</p></div>
+        </div>
+      </div>
+      <div class="card amber">
+        <div class="label">shared/assets/</div>
+        <div class="list">
+          <div class="li"><span class="tick">✓</span><p class="body">Templates de PR review, findings, incident report, ADR.</p></div>
+          <div class="li"><span class="tick">✓</span><p class="body">Exemplos de saída e modelos reutilizáveis.</p></div>
+          <div class="li"><span class="tick">✓</span><p class="body">Artefatos que ajudam a materializar o resultado final.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="formula"><b>shared/references/</b> ajuda a decidir · <b>shared/assets/</b> ajuda a entregar.</div>
+  </div>
+  <div class="footer"><span>Reuso também vive fora do script</span><span class="page">07</span></div>
+  <aside class="speaker"><b>Nota:</b> aqui vale reforçar que shared references não deve virar uma enciclopédia infinita, e asset não é só formatação de saída.</aside>
+</div></section>
+
+<section><div class="slide">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><span class="name">Dependency Rule</span></div>
+    <div class="meta"><span class="chip">Fluxo legível</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Regra de dependência</div>
+    <h2>O fluxo principal precisa continuar explícito na skill.</h2>
+    <div class="flow">
+      <div class="node"><div class="n1">Skill</div><div class="n2">declara intenção e chama recursos</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="n1">Shared script</div><div class="n2">executa operação</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="n1">Shared references</div><div class="n2">suporta decisão</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="n1">Asset</div><div class="n2">padroniza o output</div></div>
+    </div>
+    <div class="grid cols2">
+      <div class="card green">
+        <div class="label">Desejável</div>
+        <p class="body">Abrir a <b>SKILL.md</b> e entender o fluxo sem fazer caça ao tesouro por cinco pastas diferentes.</p>
+      </div>
+      <div class="card red">
+        <div class="label">Evitar</div>
+        <p class="body">Scripts compartilhados chamando outros scripts obscuros, references dependentes de scripts escondidos e uma teia que ninguém consegue depurar.</p>
+      </div>
+    </div>
+    <div class="formula">Se o leitor não entende o caminho principal rapidamente, o monorepo ficou opaco.</div>
+  </div>
+  <div class="footer"><span>Keep the workflow visible</span><span class="page">08</span></div>
+  <aside class="speaker"><b>Nota:</b> esse slide é a regra de ouro do desenho. O reuso não pode matar a legibilidade.</aside>
+</div></section>
+
+<section><di
