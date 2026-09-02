@@ -128,65 +128,55 @@ Pesquisa promissora não é automaticamente uma prática pronta para produção.
 
 ---
 
-## Slide 7 — Context Engineering
+## Slide 7 — Contexto como parte do ciclo
 
 ### Fala sugerida
 
-“Durante algum tempo, contexto foi tratado como uma questão de capacidade: quantos tokens cabem na janela? O problema real é arquitetural: qual informação deve entrar, em qual momento e para qual agente?
+“Quando o meta-harness coordena execuções longas, contexto deixa de ser um pacote carregado uma única vez. Cada incremento precisa receber apenas o contexto necessário para planejar, construir, testar e avaliar aquela etapa.
 
-Despejar um repositório inteiro no contexto aumenta custo e ruído. O ACToR explora a recuperação de contexto em pontos críticos da geração, quando uma decisão depende de informação específica do repositório.
+Isso conecta diretamente o Harness-of-Harness à progressive disclosure das skills: o catálogo ajuda a escolher a capacidade, o `SKILL.md` orienta o trabalho e referências ou scripts entram quando a decisão exige.
 
-Isso conversa diretamente com progressive disclosure em skills. Primeiro carregamos metadados suficientes para decidir. Depois, o workflow. Referências e scripts entram somente quando a execução precisa deles.
-
-Context engineering não é empilhar informação. É controlar sua entrega.”
-
-### Exemplo
-
-“Para revisar idempotência, o agente não precisa ler toda a documentação de observabilidade. Ele precisa do contrato, do fluxo de persistência e das regras específicas daquela decisão.”
+A ideia central é simples: o meta-harness não despeja contexto; ele governa quando cada contexto entra.”
 
 ### Transição
 
-“A mesma lógica vale para memória: guardar mais não significa lembrar melhor.”
+“Se o trabalho atravessa vários ciclos e sessões, precisamos preservar o que já foi aprendido.”
 
 ---
 
-## Slide 8 — Memória como estrutura
+## Slide 8 — Memória entre incrementos
 
 ### Fala sugerida
 
-“Parte do que chamamos de memória de agentes é, na prática, gerenciamento de estado.
+“Em uma execução de vários dias, memória significa continuidade operacional.
 
-O Prospective Intention Store representa intenções futuras com campos como tarefa, gatilho, condição, prazo e ação. O ciclo de vida fica no software; o modelo atua apenas onde linguagem e interpretação são necessárias.
+O meta-harness precisa manter objetivo, hipótese, evidência, decisão e próximo experimento. Também precisa versionar os artefatos produzidos em cada ciclo. Assim, uma nova sessão não começa do zero e não repete cegamente tentativas anteriores.
 
-No experimento mostrado aqui, um modelo pequeno saiu de 4,2% sem o store para 66,2% com estado tipado. A mensagem não é que esses números se repetirão em qualquer domínio. A mensagem é que estrutura pode compensar capacidade de modelo.
-
-Às vezes não precisamos de um modelo maior. Precisamos parar de pedir ao modelo para fazer o trabalho que o software tradicional faz melhor.”
+Essa memória não precisa ser uma narrativa infinita. Pode ser estado estruturado e auditável, conectado ao histórico dos incrementos.”
 
 ### Transição
 
-“Se contexto e memória viram componentes arquiteturais, também precisamos observar como esses componentes influenciam a execução.”
+“Mas guardar estado não basta. O ciclo só aprende se houver avaliação independente.”
 
 ---
 
-## Slide 9 — Observabilidade da trajetória
+## Slide 9 — Avaliação fecha o ciclo
 
 ### Fala sugerida
 
-“Nosso padrão atual de avaliação costuma terminar em pass ou fail. Isso informa se o resultado passou no teste, mas não explica a qualidade operacional.
+“O ponto mais forte do Harness-of-Harness é fechar o ciclo com avaliação.
 
-Dois agentes podem produzir o mesmo patch correto. Um leu cinco arquivos, executou quatro comandos e acertou de primeira. O outro percorreu quarenta arquivos, fez dezenas de tentativas e chegou ao resultado por acaso. O outcome é igual; a trajetória não é.
+Não basta o agente declarar que terminou. Cada incremento precisa produzir resultado, testes e evidências que possam orientar a próxima decisão. Resultado e trajetória importam: o patch pode passar, mas a execução pode ter sido cara, instável ou impossível de reproduzir.
 
-Para operar agentes, precisamos observar arquivos explorados, comandos, ferramentas, tentativas, testes, reversões, tempo, custo e intervenções humanas.
-
-Essa telemetria permite comparar versões do harness, encontrar desperdício de contexto e identificar onde a execução realmente se degrada.”
+O meta-harness usa essa avaliação para continuar, corrigir a rota, abrir uma nova sessão ou encerrar.”
 
 ### Ponto de ênfase
 
-Outcome mede entrega. Trajetória mede engenharia.
+“Sem avaliação, repetição é apenas looping. Com avaliação, vira aprendizado operacional.”
 
 ### Transição
 
-“É aqui que o Devin Desktop deixa de parecer apenas uma interface e passa a ser visto como parte da arquitetura.”
+“Agora podemos aterrissar essa ideia em um coding harness real.”
 
 ---
 
@@ -194,39 +184,39 @@ Outcome mede entrega. Trajetória mede engenharia.
 
 ### Fala sugerida
 
-“Arquiteturalmente, podemos tratar o Devin Desktop como um coding harness.
+“Arquiteturalmente, podemos tratar o Devin Desktop como o coding harness que executa cada incremento.
 
-Na entrada, temos o objetivo, as restrições, o `AGENTS.md`, as skills e os padrões do repositório. No meio, o Devin coordena planejamento, contexto, IDE, shell, browser e execução. Na saída, esperamos patch, testes, pull request, evidências e uma trajetória que possa ser revisada.
+Na entrada, temos objetivo, restrições, `AGENTS.md`, skills e padrões do repositório. No meio, o Devin coordena planejamento, contexto, IDE, shell, browser e execução. Na saída, esperamos patch, testes, evidências e uma trajetória revisável.
 
-Essa leitura é importante porque separa o contrato operacional do modelo usado por baixo. O modelo pode evoluir ou ser substituído. As regras de execução, segurança, validação e evidência precisam permanecer consistentes.
+A camada acima — nosso meta-harness — decide qual incremento executar, quando criar uma nova sessão, como avaliar a entrega e qual será o próximo ciclo.
 
-O valor não está apenas em gerar código. Está em fechar o ciclo entre intenção, alteração e prova.”
+O Devin faz o trabalho. O meta-harness governa a continuidade do trabalho.”
 
 ### Pergunta para o time
 
-“Quais partes desse contrato hoje estão explícitas no repositório e quais ainda dependem de conhecimento informal?”
+“Quais decisões hoje precisam de uma pessoa para ligar uma sessão à próxima?”
 
 ### Transição
 
-“Essa arquitetura não está aparecendo em uma ferramenta isolada. Existe uma convergência no mercado.”
+“Essa separação também ajuda a distinguir o que já é aplicável do que ainda está na fronteira.”
 
 ---
 
-## Slide 11 — Convergência do mercado
+## Slide 11 — Da pesquisa para a engenharia
 
 ### Fala sugerida
 
-“Anthropic, OpenAI e Devin já implementam partes relevantes desse stack: skills, ferramentas, ambientes de execução, memória, contexto gerenciado e diferentes formas de orquestração.
+“As duas referências contam uma história coerente.
 
-É importante não afirmar que uma empresa implementou um paper específico sem evidência. O que podemos afirmar é que pesquisa e produto estão convergindo para os mesmos problemas.
+O Harness-of-Harness demonstra uma camada acima de coding harnesses existentes, coordenando incrementos verificáveis por vários ciclos. O HarnessDev empurra a fronteira e pergunta até onde o próprio harness pode ser criado ou evoluído por agentes.
 
-As bases — skills, tool use e harnesses separados do modelo — já estão em produção. Memória e contexto ainda estão amadurecendo. Harnesses que evoluem automaticamente continuam principalmente no campo da pesquisa.
+A recomendação prática fica no meio: usar automação para coordenar sessões e avaliações, mas manter contratos, permissões e mudanças do harness versionados e governados.
 
-O mapa ajuda a distinguir o que podemos aplicar agora do que apenas devemos acompanhar.”
+Não precisamos vender autonomia mágica. Precisamos construir um sistema que aprende sem perder controle.”
 
 ### Transição
 
-“Diante disso, qual seria um passo responsável e mensurável para um time de engenharia?”
+“Então qual é o primeiro recorte concreto?”
 
 ---
 
@@ -234,22 +224,21 @@ O mapa ajuda a distinguir o que podemos aplicar agora do que apenas devemos acom
 
 ### Fala sugerida
 
-“Minha recomendação não é começar construindo um meta-harness autônomo. O primeiro passo é tornar o harness atual observável.
+“O primeiro meta-harness não precisa ser uma plataforma enorme. Ele pode ser um ciclo explícito sobre o harness atual.
 
-Isso envolve três frentes. Primeiro, contratos: entradas, permissões, outputs e condições de parada. Segundo, trajetórias: decisões, ferramentas, testes, custo e intervenção humana. Terceiro, evals: comparar não apenas se a tarefa passou, mas como ela foi resolvida.
+Primeiro, contratos: definir entrada, restrições, entregáveis e condição de parada. Segundo, continuidade: criar uma nova sessão por incremento necessário e carregar o estado mínimo. Terceiro, avaliação: validar resultado e trajetória antes de decidir o próximo passo.
 
-Um piloto de PR Review Java ou Kotlin é um recorte interessante porque tem entrada clara, critérios técnicos conhecidos e saída verificável. Podemos comparar tempo, cobertura de problemas, falsos positivos, quantidade de intervenção e custo da trajetória.
+Um piloto de PR Review Java ou Kotlin é um bom recorte. O meta-harness pode decompor a revisão, executar sessões especializadas, consolidar evidências e medir qualidade, tempo, custo e intervenção humana.
 
-O objetivo inicial não é autonomia máxima. É evidência suficiente para decidir onde aumentar autonomia com segurança.”
+A ambição é Harness-of-Harness. O começo é um loop pequeno que conseguimos explicar.”
 
 ### Métricas possíveis
 
+- Incrementos concluídos por sessão.
 - Tempo total e tempo humano.
-- Problemas relevantes encontrados.
-- Falsos positivos.
-- Arquivos e comandos utilizados.
-- Reexecuções e intervenções.
-- Custo por execução.
+- Problemas relevantes e falsos positivos.
+- Reexecuções, intervenções e custo.
+- Evidências preservadas entre ciclos.
 
 ### Transição
 
@@ -257,21 +246,24 @@ O objetivo inicial não é autonomia máxima. É evidência suficiente para deci
 
 ---
 
-## Slide 13 — Fechamento e referências
+## Slide 13 — Fechamento e duas referências
 
 ### Fala sugerida
 
-“O futuro da engenharia com agentes não pertence apenas ao melhor modelo. Pertence ao melhor sistema para fazê-lo trabalhar.
+“O futuro da engenharia com agentes não pertence apenas ao melhor modelo. Pertence ao melhor sistema para fazê-lo trabalhar por ciclos, sessões e incrementos verificáveis.
 
-O modelo oferece capacidade. A skill empacota conhecimento operacional. O agent conduz a trajetória. O harness entrega contexto, ferramentas, memória, isolamento, observabilidade e governança.
+O Harness-of-Harness é nossa referência principal: uma camada acima organiza execução, avaliação e aprendizado contínuo. O HarnessDev é a referência complementar: explora a criação e a evolução do próprio harness.
 
-Essa é a passagem de uma discussão centrada no agente para uma disciplina de Harness Engineering.
+A tese prática é esta: o coding harness executa; o meta-harness decide como o trabalho continua.”
 
-Os links deste slide são as principais referências usadas. Minha sugestão é observar especialmente Harness-of-Harness, HarnessDev e os trabalhos sobre trajetória e memória estruturada, porque juntos eles descrevem partes diferentes do mesmo stack.”
+### Referências
+
+- [Harness-of-Harness — arXiv:2609.01481](https://arxiv.org/abs/2609.01481)
+- [HarnessDev — arXiv:2609.01437](https://arxiv.org/abs/2609.01437)
 
 ### Encerramento sugerido
 
-“A pergunta que eu deixo é: se o nosso agente já consegue escrever código, o que ainda falta no harness para confiarmos na forma como ele trabalha?”
+“Se o nosso agente já consegue escrever código, qual ciclo precisamos construir acima dele para que consiga aprender entre um incremento e outro?”
 
 ---
 
