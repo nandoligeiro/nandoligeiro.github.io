@@ -38,7 +38,7 @@ Pass ou fail mede a entrega final. Não mede a qualidade da execução. Para ope
 
 ## Slide 10 — Devin Desktop como harness
 
-No Santander, Devin Desktop deve ser lido arquiteturalmente como o harness. Ele conecta objetivo, repositório, shell, IDE, browser, skills e evidências. O modelo pode mudar; o contrato operacional precisa permanecer.
+Devin Desktop deve ser lido arquiteturalmente como o harness. Ele conecta objetivo, repositório, shell, IDE, browser, skills e evidências. O modelo pode mudar; o contrato operacional precisa permanecer.
 
 ## Slide 11 — Convergência do mercado
 
