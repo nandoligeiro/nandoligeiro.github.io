@@ -84,26 +84,29 @@ Autonomia segura não nasce da ausência de controle. Ela nasce de controles que
 
 ---
 
-## Slide 5 — Harness-of-Harness
+## Slide 5 — O que os números demonstram
 
 ### Fala sugerida
 
-“O Harness-of-Harness não tenta substituir os coding harnesses existentes. Ele opera acima deles.
+“O paper compara o Harness-of-Harness com os mesmos coding harnesses funcionando sozinhos. Portanto, a variável principal não é apenas trocar o modelo ou a ferramenta. É adicionar um loop externo que organiza incrementos, avaliação e continuidade.
 
-O sistema organiza a execução em ciclos: planejar, construir, testar, avaliar e aprender. Cada ciclo trabalha com incrementos pequenos e verificáveis. Além disso, a avaliação é separada dos testes usados pelo próprio agente, evitando que ele seja o único juiz do próprio trabalho.
+Depois de três iterações, o desempenho ficou 52,25% maior na média. No melhor resultado observado, o ganho relativo chegou a 82,86%. A comparação cobriu três benchmarks e três pares de harness e modelo.
 
-Nos experimentos, a abordagem produziu ganho relativo médio de 52,25% depois de três iterações. Em uma execução de vários dias, passou de 70 ciclos construindo um software completo.
+O número de 70 ciclos responde a outra pergunta. Ele mostra duração. Em uma execução de vários dias, o HoH manteve o desenvolvimento contínuo e construiu um jogo FPS funcional.
 
-O aspecto mais importante não é o número isolado. É a mudança de controle: em vez de prescrever cada ação do agente, o sistema define entregas verificáveis, mantém histórico versionado e usa o resultado de cada ciclo para orientar o próximo.”
+Então temos duas evidências diferentes: melhoria mensurável contra o harness-base e capacidade de sustentar trabalho por vários dias.”
 
-### Cuidado com os números
+### Como explicar 52,25%
 
-Os resultados pertencem aos benchmarks e configurações avaliadas no paper. Eles indicam potencial; não garantem o mesmo ganho em qualquer projeto.
+“Se o harness-base tiver índice 100, um ganho relativo de 52,25% representa índice 152,25. Isso não significa 52 pontos percentuais de acurácia.”
+
+### Cuidado com a leitura
+
+Os resultados pertencem aos benchmarks e configurações avaliadas. Eles demonstram o potencial do loop externo, sem garantir o mesmo ganho em qualquer projeto.
 
 ### Transição
 
-“Se uma camada pode melhorar o trabalho do harness, surge uma pergunta ainda mais radical.”
-
+“O paper mostra o valor de uma camada que governa ciclos. A próxima referência investiga se o próprio harness também pode evoluir.”
 ---
 
 ## Slide 6 — HarnessDev
