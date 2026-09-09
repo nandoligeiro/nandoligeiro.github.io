@@ -108,6 +108,12 @@ function socialPreviewPagesPlugin() {
           fs.writeFileSync(target, html)
         })
       })
+
+      // Keep the public, tool-neutral visual essay available in the production artifact.
+      const harnessSlides = path.resolve('slides/harness-engineering')
+      if (fs.existsSync(harnessSlides)) {
+        fs.cpSync(harnessSlides, path.join(distDir, 'slides', 'harness-engineering'), { recursive: true })
+      }
     },
   }
 }

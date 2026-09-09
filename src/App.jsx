@@ -3,8 +3,6 @@ import MainLayout from './layouts/MainLayout'
 import Home from './pages/Home'
 import TechNotes from './pages/TechNotes'
 import TechNotePost from './pages/TechNotePost'
-import Portfolio from './pages/Portfolio'
-import Community from './pages/Community'
 
 function NotFound() {
   return (
@@ -31,8 +29,8 @@ export default function App() {
         <Route path="blog/:slug" element={<LegacyTechNotesRedirect />} />
         <Route path="leadership" element={<LegacyTechNotesRedirect />} />
         <Route path="leadership/:slug" element={<LegacyTechNotesRedirect />} />
-        <Route path="portfolio" element={<Portfolio />} />
-        <Route path="community" element={<Community />} />
+        <Route path="portfolio" element={<Navigate to="/#work" replace />} />
+        <Route path="community" element={<Navigate to="/#notes" replace />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
