@@ -24,8 +24,11 @@ const projects = [
 const thesisSteps = ['experience', 'memory', 'retrieval', 'session', 'execution', 'evaluation', 'learned experience']
 
 const talks = [
+  { eyebrow: 'SPEC-DRIVEN DEVELOPMENT', title: 'Spec-Driven AI Engineering', description: 'Da intenção ao código com um case de API Java e Spring Boot.', href: '/slides/spec-driven-java-api/' },
   { eyebrow: 'META-HARNESS', title: 'Harness Engineering', description: 'Da instrução solta a um sistema de execução verificável.', href: '/slides/harness-engineering/' },
-  { eyebrow: 'ENGINEERING PRACTICE', title: 'SPEC JAM', description: 'Clareza, contexto e colaboração antes da implementação.', href: '/tech-notes/spec-jam-lideranca-tecnica' },
+  { eyebrow: 'AGENT ENGINEERING', title: 'Modern Agent Skills', description: 'Agent, subagent e skill como responsabilidades diferentes.', href: '/slides/modern-agent-skills/' },
+  { eyebrow: 'KNOWLEDGE ARCHITECTURE', title: 'Skill Monorepo', description: 'Governança e distribuição de capacidades reutilizáveis.', href: '/slides/skill-monorepo-architecture/' },
+  { eyebrow: 'SKILL ENGINEERING', title: 'Single Skill Architecture', description: 'A anatomia de uma skill pequena, testável e evolutiva.', href: '/slides/single-skill-architecture/' },
 ]
 
 export default function Home() {
@@ -47,6 +50,7 @@ export default function Home() {
           <div className="hero-actions">
             <a href="#work" className="button button-solid">Explorar trabalhos <span>↓</span></a>
             <Link to="/tech-notes" className="button button-ghost">Ler notas</Link>
+            <a href="#talks" className="button button-ghost">Ver talks</a>
           </div>
         </div>
         <div className="hero-orbit" aria-hidden="true">
