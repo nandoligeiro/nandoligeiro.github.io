@@ -109,10 +109,10 @@ function socialPreviewPagesPlugin() {
         })
       })
 
-      // Keep the public, tool-neutral visual essay available in the production artifact.
-      const harnessSlides = path.resolve('slides/harness-engineering')
-      if (fs.existsSync(harnessSlides)) {
-        fs.cpSync(harnessSlides, path.join(distDir, 'slides', 'harness-engineering'), { recursive: true })
+      // Publish every visual essay and keep future talks discoverable without build changes.
+      const slidesDir = path.resolve('slides')
+      if (fs.existsSync(slidesDir)) {
+        fs.cpSync(slidesDir, path.join(distDir, 'slides'), { recursive: true })
       }
     },
   }
