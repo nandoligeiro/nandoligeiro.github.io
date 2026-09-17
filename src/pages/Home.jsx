@@ -24,6 +24,7 @@ const projects = [
 const thesisSteps = ['experience', 'memory', 'retrieval', 'session', 'execution', 'evaluation', 'learned experience']
 
 const talks = [
+  { eyebrow: 'DISTRIBUTED SYSTEMS', title: 'Idempotência em Sistemas Distribuídos', description: 'Retries, duplicidade, concorrência e mensageria sem cobrar duas vezes.', href: '/slides/idempotencia-distribuida/' },
   { eyebrow: 'SPEC-DRIVEN DEVELOPMENT', title: 'Spec-Driven AI Engineering', description: 'Da intenção ao código com um case de API Java e Spring Boot.', href: '/slides/spec-driven-java-api/' },
   { eyebrow: 'META-HARNESS', title: 'Harness Engineering', description: 'Da instrução solta a um sistema de execução verificável.', href: '/slides/harness-engineering/' },
   { eyebrow: 'AGENT ENGINEERING', title: 'Modern Agent Skills', description: 'Agent, subagent e skill como responsabilidades diferentes.', href: '/slides/modern-agent-skills/' },
