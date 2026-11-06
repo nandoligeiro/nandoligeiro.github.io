@@ -24,6 +24,7 @@ const projects = [
 const thesisSteps = ['experience', 'memory', 'retrieval', 'session', 'execution', 'evaluation', 'learned experience']
 
 const talks = [
+  { eyebrow: 'SPEC-DRIVEN ENGINEERING', title: 'SDD: Spec Kit × AWS Kiro', description: 'Uma comparação de workflows, governança, qualidade e prática de engenharia.', href: '/slides/sdd-speckit-vs-kiro/' },
   { eyebrow: 'DISTRIBUTED SYSTEMS', title: 'Idempotência em Sistemas Distribuídos', description: 'Retries, duplicidade, concorrência e mensageria sem cobrar duas vezes.', href: '/slides/idempotencia-distribuida/' },
   { eyebrow: 'SPEC-DRIVEN DEVELOPMENT', title: 'Spec-Driven AI Engineering', description: 'Da intenção ao código com um case de API Java e Spring Boot.', href: '/slides/spec-driven-java-api/' },
   { eyebrow: 'META-HARNESS', title: 'Harness Engineering', description: 'Da instrução solta a um sistema de execução verificável.', href: '/slides/harness-engineering/' },
