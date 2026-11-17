@@ -24,6 +24,8 @@ const projects = [
 const thesisSteps = ['experience', 'memory', 'retrieval', 'session', 'execution', 'evaluation', 'learned experience']
 
 const talks = [
+  { eyebrow: 'AI-DRIVEN DEVELOPMENT LIFECYCLE', title: 'AWS AI-DLC: AI executa, humanos decidem', description: 'Inception, Construction e Operations — decisões, gates, mob e prática de engenharia.', href: '/slides/ai-dlc-decision-driven/' },
+
   { eyebrow: 'AGENTIC SOFTWARE LIFECYCLE', title: 'SpecJam × AWS AI-DLC', description: 'Da metodologia ao meta-harness: contexto, sessões, evidências e aprendizado governado.', href: '/slides/specjam-ai-dlc/' },
   { eyebrow: 'KIRO · AGENTIC IDE', title: 'Kiro: SDD & Agentic Engineering', description: 'Specs, agents, steering, hooks, verificações e práticas de engenharia com Kiro.', href: '/slides/kiro-agentic-ide/' },
   { eyebrow: 'SPEC-DRIVEN ENGINEERING', title: 'SDD: Spec Kit × AWS Kiro', description: 'Uma comparação de workflows, governança, qualidade e prática de engenharia.', href: '/slides/sdd-speckit-vs-kiro/' },
