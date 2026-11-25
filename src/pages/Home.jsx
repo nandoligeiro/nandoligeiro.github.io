@@ -24,6 +24,7 @@ const projects = [
 const thesisSteps = ['experience', 'memory', 'retrieval', 'session', 'execution', 'evaluation', 'learned experience']
 
 const talks = [
+  { eyebrow: 'ENGINEERING RESPONSIBILITY', title: 'Engenharia além do código', description: 'Repertório, dívida cognitiva, intenção e responsabilidade humana na era da IA.', href: '/slides/engineering-beyond-code/' },
   { eyebrow: 'AI-DRIVEN DEVELOPMENT LIFECYCLE', title: 'AWS AI-DLC: AI executa, humanos decidem', description: 'Inception, Construction e Operations — decisões, gates, mob e prática de engenharia.', href: '/slides/ai-dlc-decision-driven/' },
 
   { eyebrow: 'AGENTIC SOFTWARE LIFECYCLE', title: 'SpecJam × AWS AI-DLC', description: 'Da metodologia ao meta-harness: contexto, sessões, evidências e aprendizado governado.', href: '/slides/specjam-ai-dlc/' },
@@ -106,7 +107,7 @@ export default function Home() {
 
       <section className="talks-section" id="talks">
         <div className="section-heading horizontal"><div><p className="section-number">04 / TALKS &amp; VISUAL ESSAYS</p><h2>Ideias feitas para<br /><em>circular.</em></h2></div><p>Apresentações autorais para explicar engenharia moderna sem transformar complexidade em fumaça.</p></div>
-        <div className="talk-grid">{talks.map((talk, index) => <a href={talk.href} className="talk-card" key={talk.title}><span className="talk-index">0{index + 1}</span><div><span>{talk.eyebrow}</span><h3>{talk.title}</h3><p>{talk.description}</p></div><b>↗</b></a>)}</div>
+        <div className="talk-grid">{talks.map((talk, index) => <a href={talk.href} className="talk-card" key={talk.title}><span className="talk-index">{String(index + 1).padStart(2, '0')}</span><div><span>{talk.eyebrow}</span><h3>{talk.title}</h3><p>{talk.description}</p></div><b>↗</b></a>)}</div>
       </section>
 
       <section className="closing-section" id="about">
