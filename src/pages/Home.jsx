@@ -24,6 +24,7 @@ const projects = [
 const thesisSteps = ['experience', 'memory', 'retrieval', 'session', 'execution', 'evaluation', 'learned experience']
 
 const talks = [
+  { eyebrow: 'DISCOVERY · SPEC-DRIVEN ENGINEERING', title: 'Spec Kit: Discovery & Delivery', description: 'Da avaliação de ideias à entrega: assess, decision gates e workflows na versão 1.4.0.', href: '/slides/speckit-discovery/' },
   { eyebrow: 'ENGINEERING RESPONSIBILITY', title: 'Engenharia além do código', description: 'Repertório, dívida cognitiva, intenção e responsabilidade humana na era da IA.', href: '/slides/engineering-beyond-code/' },
   { eyebrow: 'AI-DRIVEN DEVELOPMENT LIFECYCLE', title: 'AWS AI-DLC: AI executa, humanos decidem', description: 'Inception, Construction e Operations — decisões, gates, mob e prática de engenharia.', href: '/slides/ai-dlc-decision-driven/' },
 
